@@ -1,0 +1,23 @@
+services:
+  db:
+    image: postgis/postgis
+    ports:
+      - '5432:5432'
+    networks:
+      - default-network
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: 123456
+      POSTGRES_USER: admin
+      POSTGRES_DB: database
+  rabbitmq:
+    image: rabbitmq:3-management
+    networks:
+      - default-network
+    ports:
+      - '5672:5672'
+      - '15672:15672'
+
+networks:
+  default-network:
+    driver: bridge
